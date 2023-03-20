@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="65dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="4dp"
+    app:cardBackgroundColor="#333333">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nick Johns"
+            android:textColor="#ffffff"
             android:layout_marginLeft="16dp"
             android:textSize="16dp"
             android:layout_toRightOf="@id/iv_image"/>
@@ -22,7 +27,8 @@
             android:layout_height="wrap_content"
             android:text="Jakarta, Indonesia"
             android:layout_marginLeft="16dp"
-            android:textSize="16dp"
+            android:textSize="14dp"
+            android:textColor="#C1C1C1"
             android:layout_below="@+id/tv_username"
             android:layout_toRightOf="@id/iv_image"/>
 
@@ -31,7 +37,16 @@
             android:id="@+id/iv_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_centerVertical="true"
             android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"/>
 
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
