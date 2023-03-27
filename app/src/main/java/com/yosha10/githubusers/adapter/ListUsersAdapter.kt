@@ -22,7 +22,7 @@ class ListUsersAdapter(private val listUsers: List<ItemsItem>): RecyclerView.Ada
 
     override fun getItemCount() = listUsers.size
 
-    class ViewHolder(var itemBinding: ItemUsersBinding): RecyclerView.ViewHolder(itemBinding.root){
+    class ViewHolder(private var itemBinding: ItemUsersBinding): RecyclerView.ViewHolder(itemBinding.root){
         fun bind(user: ItemsItem){
             itemBinding.apply {
                 tvUsername.text = user.login

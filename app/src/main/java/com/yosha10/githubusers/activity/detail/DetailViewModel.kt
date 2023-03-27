@@ -1,6 +1,5 @@
 package com.yosha10.githubusers.activity.detail
 
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,7 +39,7 @@ class DetailViewModel: ViewModel() {
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message.toString()}", )
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
     }

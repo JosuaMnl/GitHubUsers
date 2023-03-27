@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yosha10.githubusers.ItemsItem
 import com.yosha10.githubusers.ListUsersResponse
-import com.yosha10.githubusers.adapter.ListUsersAdapter
 import com.yosha10.githubusers.api.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback

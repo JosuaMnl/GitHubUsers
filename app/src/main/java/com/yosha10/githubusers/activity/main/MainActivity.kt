@@ -2,30 +2,21 @@ package com.yosha10.githubusers.activity.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yosha10.githubusers.ItemsItem
-import com.yosha10.githubusers.ListUsersResponse
 import com.yosha10.githubusers.R
 import com.yosha10.githubusers.adapter.ListUsersAdapter
-import com.yosha10.githubusers.api.ApiConfig
 import com.yosha10.githubusers.databinding.ActivityMainBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
-
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                setSearchData(query.toString())
-                binding.search.clearFocus()
+                if (query == ""){
+                    Toast.makeText(this@MainActivity, "Username yang dicari tidak ada!", Toast.LENGTH_SHORT).show()
+                } else {
+                    setSearchData(query.toString())
+                    binding.search.clearFocus()
+                }
                 return true
             }
 
@@ -43,6 +38,8 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+
+        // Setting Action Bar
         supportActionBar?.setLogo(R.drawable.icon_action_bar)
         supportActionBar?.title = "Github Users"
         supportActionBar?.setDisplayShowHomeEnabled(true)

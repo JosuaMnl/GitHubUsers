@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yosha10.githubusers.ItemsItem
-import com.yosha10.githubusers.ListUsersResponse
-import com.yosha10.githubusers.activity.main.MainViewModel
 import com.yosha10.githubusers.api.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,7 +38,7 @@ class FollowViewModel: ViewModel() {
             ) {
                 _isLoadingFollowers.value = false
                 if (response.isSuccessful){
-                    _listFollowers.value = response?.body()
+                    _listFollowers.value = response.body()
                 } else {
                     Log.d(TAG, "onFailure: ${response.message()}")
                 }
@@ -63,7 +61,7 @@ class FollowViewModel: ViewModel() {
             ) {
                 _isLoadingFollowing.value = false
                 if (response.isSuccessful){
-                    _listFollowing.value = response?.body()
+                    _listFollowing.value = response.body()
                 } else {
                     Log.d(TAG, "onFailure: ${response.message()}")
                 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
@@ -12,7 +11,6 @@ import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yosha10.githubusers.R
-import com.yosha10.githubusers.activity.fragment.FollowFragment
 import com.yosha10.githubusers.adapter.SectionsPagerAdapter
 import com.yosha10.githubusers.databinding.ActivityDetailUserBinding
 import com.yosha10.githubusers.model.DetailUserResponse
@@ -28,11 +26,13 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Setting Action Bar
         supportActionBar?.setLogo(R.drawable.icon_action_bar)
         supportActionBar?.title = "Github User Details"
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayUseLogoEnabled(true)
 
+        // Get username from ListUserAdapter
         val username = intent.getStringExtra(EXTRA_NAME)
         detailViewModel.getDetailUser(username)
 
@@ -93,7 +93,6 @@ class DetailUserActivity : AppCompatActivity() {
 
     companion object{
         const val EXTRA_NAME = "extra_name"
-        const val TAG = "DetailUserActivity"
 
         @StringRes
         private val TAB_TITLES = intArrayOf(

@@ -41,7 +41,7 @@ class FollowFragment : Fragment() {
             showLoading(it)
         }
 
-        followViewModel.isLoadingFollowers.observe(viewLifecycleOwner){
+        followViewModel.isLoadingFollowing.observe(viewLifecycleOwner){
             showLoading(it)
         }
 
