@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="65dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="8dp"
     android:layout_margin="4dp"
     app:cardBackgroundColor="#333333">
@@ -15,30 +16,21 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nick Johns"
+            tools:text="Nick Johns"
             android:textColor="#ffffff"
-            android:layout_marginLeft="16dp"
-            android:textSize="16dp"
-            android:layout_toRightOf="@id/iv_image"/>
-
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jakarta, Indonesia"
-            android:layout_marginLeft="16dp"
-            android:textSize="14dp"
-            android:textColor="#C1C1C1"
-            android:layout_below="@+id/tv_username"
-            android:layout_toRightOf="@id/iv_image"/>
-
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            android:layout_toEndOf="@id/iv_image"
+            tools:ignore="RelativeOverlap" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"/>
+            tools:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/foto_user"/>
 
         <ImageView
             android:layout_alignParentEnd="true"
@@ -46,7 +38,7 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/baseline_arrow_forward_ios_24"/>
-
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            android:contentDescription="@string/icon_panah" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

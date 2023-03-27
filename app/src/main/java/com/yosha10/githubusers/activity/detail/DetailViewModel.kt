@@ -1,5 +1,6 @@
 package com.yosha10.githubusers.activity.detail
 
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,7 +18,11 @@ class DetailViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getDetailUser(username: String?){
+    init {
+        getDetailUser()
+    }
+
+    fun getDetailUser(username: String?=""){
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailUser(username)
         client.enqueue(object : Callback<DetailUserResponse> {
@@ -31,14 +36,12 @@ class DetailViewModel: ViewModel() {
                 }else{
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
-
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}", )
             }
-
         })
     }
 

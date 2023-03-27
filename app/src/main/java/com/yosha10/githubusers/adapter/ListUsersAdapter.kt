@@ -26,12 +26,10 @@ class ListUsersAdapter(private val listUsers: List<ItemsItem>): RecyclerView.Ada
         fun bind(user: ItemsItem){
             itemBinding.apply {
                 tvUsername.text = user.login
-                tvLocation.text = user.htmlUrl
                 Glide.with(itemView.context)
                     .load(user.avatarUrl)
                     .into(ivImage)
                 itemView.setOnClickListener {
-//                    Toast.makeText(it.context, "${user.login.toString()}", Toast.LENGTH_SHORT).show()
                     val detailIntent = Intent(it.context, DetailUserActivity::class.java)
                     detailIntent.putExtra(EXTRA_NAME, user.login)
                     itemView.context.startActivity(detailIntent)
