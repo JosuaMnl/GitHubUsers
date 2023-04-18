@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yosha10.githubusers.ItemsItem
 import com.yosha10.githubusers.api.ApiConfig
+import com.yosha10.githubusers.model.ItemsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

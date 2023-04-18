@@ -13,4 +13,93 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="cardView">
+        <item name="cardBackgroundColor">@color/jet</item>
+    </style>
+
+    <style name="textCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="textSplash">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="android:textColor">@color/silver</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+    <style name="background">
+        <item name="android:background">@color/eerie_black</item>
+    </style>
+
+    <style name="searchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="recyclerviewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="content.nameText">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">60dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="content.nickNameText">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#C1C1C1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="content.detailText">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/silver</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+
+    <style name="content.iconDetail">
+        <item name="android:layout_marginStart">28dp</item>
+    </style>
+
+    <style name="content.btnLinkToGithub" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_marginTop">164dp</item>
+        <item name="android:layout_marginEnd">28dp</item>
+        <item name="android:backgroundTint">@color/eerie_black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="content.followDetailText">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="content.followDetail">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

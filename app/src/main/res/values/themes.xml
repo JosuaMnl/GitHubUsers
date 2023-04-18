@@ -2,19 +2,45 @@
     <!-- Base application theme. -->
     <style name="Theme.GitHubUsers" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/jet</item>
-        <item name="colorPrimaryVariant">@color/eerie_black</item>
+        <item name="colorPrimary">@color/electric_violet</item>
+        <item name="colorPrimaryVariant">@color/lavender</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/electric_violet</item>
-        <item name="colorSecondaryVariant">@color/davys_gray</item>
+        <item name="colorSecondary">@color/davys_gray</item>
+        <item name="colorSecondaryVariant">@color/onyx</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
-    
+    <style name="background">
+        <item name="android:background">@color/lavender</item>
+    </style>
+
+    <style name="cardView">
+        <item name="cardBackgroundColor">@color/silver</item>
+    </style>
+
+    <style name="textCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/eerie_black</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="textSplash">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="android:textColor">@color/eerie_black</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
     <style name="searchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:textColor">@color/white</item>
         <item name="android:editTextColor">@color/white</item>

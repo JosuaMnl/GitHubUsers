@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_favorite"
+        app:showAsAction="always"
+        android:title="List Favorite User"
+        android:icon="@drawable/ic_favorite_fill"/>
+
+    <item
+        android:id="@+id/action_mode"
+        app:showAsAction="always"
+        android:title="Dark Mode"
+        android:icon="@drawable/ic_dark_mode"/>
+</menu>

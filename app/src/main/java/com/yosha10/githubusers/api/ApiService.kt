@@ -1,8 +1,8 @@
 package com.yosha10.githubusers.api
 
-import com.yosha10.githubusers.ItemsItem
 import com.yosha10.githubusers.model.DetailUserResponse
-import com.yosha10.githubusers.ListUsersResponse
+import com.yosha10.githubusers.model.ItemsItem
+import com.yosha10.githubusers.model.ListUsersResponse
 import retrofit2.Call
 import retrofit2.http.*
 

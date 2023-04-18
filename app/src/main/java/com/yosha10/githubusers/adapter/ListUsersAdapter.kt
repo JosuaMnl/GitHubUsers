@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.yosha10.githubusers.activity.detail.DetailUserActivity
 import com.yosha10.githubusers.activity.detail.DetailUserActivity.Companion.EXTRA_NAME
-import com.yosha10.githubusers.ItemsItem
 import com.yosha10.githubusers.databinding.ItemUsersBinding
+import com.yosha10.githubusers.model.ItemsItem
 
 class ListUsersAdapter(private val listUsers: List<ItemsItem>): RecyclerView.Adapter<ListUsersAdapter.ViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

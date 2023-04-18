@@ -2,61 +2,53 @@ package com.yosha10.githubusers.activity.detail
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yosha10.githubusers.R
+import com.yosha10.githubusers.activity.ViewModelFactory
 import com.yosha10.githubusers.adapter.SectionsPagerAdapter
+import com.yosha10.githubusers.database.FavoriteUser
 import com.yosha10.githubusers.databinding.ActivityDetailUserBinding
 import com.yosha10.githubusers.model.DetailUserResponse
 
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
-    private val detailViewModel by viewModels<DetailViewModel>()
+
     private var linkGithub: String? = ""
+    private lateinit var detailViewModel: DetailViewModel
+    private var mFavoriteUser: FavoriteUser? = null
+//    private var isFavorite: Boolean = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailUserBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Setting Action Bar
-        supportActionBar?.setLogo(R.drawable.icon_action_bar)
-        supportActionBar?.title = "Github User Details"
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayUseLogoEnabled(true)
-
-        // Get username from ListUserAdapter
+        // Setting Binding
+        initBinding()
+        // Get username
         val username = intent.getStringExtra(EXTRA_NAME)
-        detailViewModel.getDetailUser(username)
+        // Setting ViewModel
+        initViewModel()
+        // Setting Action Bar
+        initActionBar("Github User Details")
+        // Setting ViewPager dan Tab
+        initViewPager(username)
 
-        detailViewModel.detailUserData.observe(this) { data ->
-            setDetailUser(data)
-        }
+        // Observe All Data
+        initObserveData(username)
 
-        detailViewModel.isLoading.observe(this){state ->
-            showLoading(state)
-        }
-
-        // Tab and ViewPager
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        sectionsPagerAdapter.username = username
-        binding.viewPager.adapter = sectionsPagerAdapter
-        TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
-        }.attach()
-
-        binding.btnLinkToGithub.setOnClickListener {
-            val linkURI = Uri.parse(linkGithub)
-            val intent = Intent(Intent.ACTION_VIEW, linkURI)
-            startActivity(intent)
-        }
+        // Click BtnToGithub
+        clickBtnToGithub()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -74,7 +66,15 @@ class DetailUserActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun setDetailUser(user: DetailUserResponse){
+    private fun clickBtnToGithub(){
+        binding.btnLinkToGithub.setOnClickListener {
+            val linkURI = Uri.parse(linkGithub)
+            val intent = Intent(Intent.ACTION_VIEW, linkURI)
+            startActivity(intent)
+        }
+    }
+
+    private fun setDetailUser(user: DetailUserResponse) {
         linkGithub = user.htmlUrl
         binding.apply {
             tvName.text = user.name
@@ -88,10 +88,80 @@ class DetailUserActivity : AppCompatActivity() {
             Glide.with(this@DetailUserActivity)
                 .load(user.avatarUrl)
                 .into(ivDetail)
+            mFavoriteUser = FavoriteUser(user.login, user.avatarUrl)
         }
     }
 
-    companion object{
+    private fun initObserveData(username: String?){
+        detailViewModel.getDetailUser(username)
+
+        detailViewModel.detailUserData.observe(this) { data ->
+            setDetailUser(data)
+        }
+
+        detailViewModel.isLoading.observe(this) { state ->
+            showLoading(state)
+        }
+
+        detailViewModel.isFavoriteUser(username ?: "").observe(this){ state ->
+            val iconBtn = if (state) R.drawable.ic_favorite_fill else R.drawable.ic_favorite_border
+
+            binding.btnFavorite.apply {
+                setImageDrawable(ContextCompat.getDrawable(this@DetailUserActivity,  iconBtn))
+
+                setOnClickListener {
+                    Log.d("DetailUserActivity", "Btn Favorite Clicked")
+                    mFavoriteUser?.let { favoriteUser ->
+                        if (state) deleteFavoriteUser(favoriteUser) else addFavoriteUser(favoriteUser)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initViewPager(username: String?){
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.username = username
+        binding.viewPager.adapter = sectionsPagerAdapter
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+    }
+
+    private fun initActionBar(title: String?){
+        supportActionBar?.apply {
+            setLogo(R.drawable.icon_action_bar)
+            this.title = title
+            setDisplayShowHomeEnabled(true)
+            setDisplayUseLogoEnabled(true)
+        }
+    }
+
+    private fun initBinding(){
+        binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    private fun initViewModel(){
+        detailViewModel = obtainViewModel(this@DetailUserActivity)
+    }
+
+    private fun addFavoriteUser(mFavoriteUser: FavoriteUser){
+        detailViewModel.insertUser(mFavoriteUser)
+        Toast.makeText(this@DetailUserActivity, "User "+ mFavoriteUser.username +" disimpan", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun deleteFavoriteUser(mFavoriteUser: FavoriteUser){
+        detailViewModel.deleteUser(mFavoriteUser)
+        Toast.makeText(this@DetailUserActivity, "User "+ mFavoriteUser.username +" dihapus", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(DetailViewModel::class.java)
+    }
+
+    companion object {
         const val EXTRA_NAME = "extra_name"
 
         @StringRes

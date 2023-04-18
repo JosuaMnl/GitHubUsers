@@ -1,6 +1,5 @@
 package com.yosha10.githubusers.activity.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +8,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.yosha10.githubusers.ItemsItem
-import com.yosha10.githubusers.activity.detail.DetailUserActivity
 import com.yosha10.githubusers.adapter.ListUsersAdapter
 import com.yosha10.githubusers.databinding.FragmentFollowBinding
+import com.yosha10.githubusers.model.ItemsItem
 
 class FollowFragment : Fragment() {
     private var position: Int = 0

@@ -13,18 +13,27 @@
         android:theme="@style/Theme.GitHubUsers"
         tools:targetApi="31">
         <activity
-            android:name=".activity.detail.DetailUserActivity"
-            android:exported="false"
-            android:parentActivityName=".activity.main.MainActivity"/>
-        <activity
-            android:name=".activity.main.MainActivity"
-            android:exported="true">
+            android:name=".activity.SplashScreenActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.theme.ThemeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.favorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.detail.DetailUserActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.main.MainActivity" />
+        <activity
+            android:name=".activity.main.MainActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -13,4 +13,7 @@
     <string name="repository">Repository</string>
     <string name="icon_panah">Icon Panah</string>
     <string name="foto_user">Foto User</string>
+    <string name="tombol_favorite">Tombol Favorite</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="logo_github">Logo Github</string>
 </resources>

@@ -1,17 +1,17 @@
 package com.yosha10.githubusers.activity.main
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.yosha10.githubusers.ItemsItem
-import com.yosha10.githubusers.ListUsersResponse
+import androidx.lifecycle.*
 import com.yosha10.githubusers.api.ApiConfig
+import com.yosha10.githubusers.model.ItemsItem
+import com.yosha10.githubusers.model.ListUsersResponse
+import com.yosha10.githubusers.preference.SettingPreferences
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel(private val pref: SettingPreferences): ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -44,6 +44,16 @@ class MainViewModel: ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
+        }
     }
 
     companion object {
